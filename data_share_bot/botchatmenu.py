@@ -1,6 +1,5 @@
 # this file woll handle the menu and redirection to another directories
 
-
 def read_menu_data(filename):
     """filename : file you wanted to get menu from and syntax is directory name and its sub sector in each line seperated by commas"""
     menu_data = {}  # Dictionary to store menu hierarchy
@@ -8,7 +7,6 @@ def read_menu_data(filename):
         for line in file:
             semester, subject, year = (line.strip().split(","))
             semester, subject, year = "/"+semester, "/"+subject, "/"+year
-            
             if semester not in menu_data:
                 menu_data[semester] = {}
             if subject not in menu_data[semester]:
@@ -146,6 +144,25 @@ def main_menu(baseurl,TOKEN,user,user_data,update,text=None,menu_data=read_menu_
                     
                     year_choice=user_data[user][4]
                         
-                  
+                    if user_data[user][4] in menu_data[semester_choice][subject_choice] and user_data[user][1]=="/addfiles":
+                        import addfiles
+
+                        if "document" in update:
+                            new_data=update
+                            addfiles.write_file(baseurl,TOKEN,semester_choice,subject_choice,year_choice,new_data)
+                        else:
+                            import send_message
+                            send_message.sendMessage(baseurl,TOKEN,user,"this bot can only save file type documents",update["message_id"])
+
+                    elif user_data[user][4] in menu_data[semester_choice][subject_choice] and user_data[user][1]=="/getfiles":
+                        import addfiles
+                        addfiles.share_files(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice)
                     
-                
+                    elif user_data[user][4] in menu_data[semester_choice][subject_choice] and user_data[user][1]=="/listfiles":
+                        import addfiles
+                        addfiles.share_file(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice)
+                        import send_message
+                        send_message.sendMessage(baseurl,TOKEN,user,"send me the text id of that file you want",update["message_id"])
+                        user_data[user][1]="/getfile"
+                        send_message.sendMessage(baseurl,TOKEN,user,"setted your command to getfiles",update["message_id"])
+                        
