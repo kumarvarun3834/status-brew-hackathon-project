@@ -1,0 +1,12 @@
+<!-- home.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+</head>
+<body>
+    {% for semester in semesters %}
+        <button onclick="window.location.href='/home/{{ semester }}/'">Go to {{ semester }}</button>
+    {% endfor %}
+</body>
+</html>
