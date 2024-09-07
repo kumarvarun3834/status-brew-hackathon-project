@@ -80,9 +80,6 @@ def display_resourse_type(baseurl,TOKEN,user,update):
     baseurl,TOKEN : requirement for working of bot
     temp_offset : from which update id we have to read data
     user : its the userid from which we have to get results
-    semester_choice : the semester directory
-    subject_choice : the subjects inside the semesters directory
-    menu_data : data from where we are getting our directory
     """
     # this message will show user a menu of semesters that are currently stored in it
     # Display the main menu (semesters)

@@ -46,9 +46,3 @@ def forwardMessages(baseurl, TOKEN, chat_id, from_chat_id, message_ids) -> int:
         print("Message failed to send")
         print("Status code:", res.status_code)
         print("Response:", res.text)
-
-# from data import *
-# response_json=forwardMessages(baseurl,TOKEN,chat_id=1789016259,from_chat_id=1789016259,message_ids=[1])
-# message_ids=handle_forwarded_messages(response_json)
-# print(message_ids)
-

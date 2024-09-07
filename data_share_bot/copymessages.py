@@ -38,9 +38,3 @@ def copyMessages(baseurl,TOKEN , chat_id, from_chat_id, message_ids):
         print("Message failed to send")
         print("Status code:", res.status_code)
         print("Response:", res.text)
-
-# from data import *
-# mess=copyMessages(baseurl,TOKEN,chat_id=1789016259,from_chat_id=1789016259,message_ids=[1,50,100])
-# # # message_ids=handle_forwarded_messages(response_json)
-# # # print(message_ids)
-# print(mess)

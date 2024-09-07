@@ -2,6 +2,7 @@
 
 import pandas as pd
 from data import  store,monitor
+import os,csv
 
 new_data={"message_id": 7,
                 "from": {
@@ -22,29 +23,6 @@ new_data={"message_id": 7,
                     "file_id": "BQACAgUAAxkBAAMHZmsmAS_x7iMkj4pcsJ7oKKKH8IAAAgoPAAI-ZlhXpdvvIXf93no1BA",
                     "file_unique_id": "AgADCg8AAj5mWFc",
                     "file_size": 3944}}
-
-# print(res["from"].values())
-# df1={"semester":"/semester1",
-#     "subject":"/Maths 1",
-#     "year":"/2023-24",
-#     "file_link":"dsjdckjdsncld",
-#     "from_id":res["from"]["id"],
-#     "chat_id":res["chat"]["id"],
-#     "date":res["date"],
-#     "file_name": res["document"]["file_name"],
-#     "mime_type": res["document"]["mime_type"],
-#     "file_id":res["document"]["file_id"],
-#     "file_unique_id": res["document"]["file_unique_id"],
-#     "file_size": res["document"]["file_size"]
-#     }
-
-# print(res["from"]["id"])
-# data=pd.DataFrame(df1)
-# print(data)
-import os,csv
-# import get_file_link
-
-
 
 def write_file(baseurl,TOKEN,semester_choice,subject_choice,year_choice,resource_type,new_data, database="data_share_bot\datafile\data.csv"):
     file_exists = os.path.isfile(database)
@@ -86,8 +64,6 @@ def write_file(baseurl,TOKEN,semester_choice,subject_choice,year_choice,resource
     import send_message
     send_message.sendMessage(baseurl,TOKEN,new_data["chat"]["id"],"your given data had been recorded",new_data["message_id"])
 
-# write_file(df1)
-
 def share_file(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice,resource_type,file='data_share_bot\datafile\data.csv'):
     # share list of files
     database=pd.read_csv(file)
@@ -96,24 +72,10 @@ def share_file(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice,res
     subject_filter=semester_filter[semester_filter["subject"]==subject_choice]
     year_filter=subject_filter[subject_filter["year"]==year_choice]
     final_filter=year_filter[year_filter["resourse_type"]==resource_type]
-    # print(semester_choice,"---------------------------------------")
-    # print(semester_filter)
-    # print(subject_choice,"---------------------------------------")
-
-    # print(subject_filter)
-    # print(year_choice,"---------------------------------------")
-
-    # print(year_filter)
-# 
-    # print("Database shape:", database.shape)
-    # print("Chat ID from new_data:", new_data["chat"]["id"])
-
-    # database=database[database["from_id"]== new_data["chat"]["id"]]
 
     columns_to_keep = ["message_id","file_name","file_link","mime_type","file_size"]
     filtered = final_filter[columns_to_keep]
     filtered.reset_index(drop=True, inplace=True)
-    # user=new_data["chat"]["id"]
     
     import files_handling
     files_handling.pdf_creation(baseurl,TOKEN,filtered,user)
@@ -125,14 +87,10 @@ def share_files(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice,re
     year_filter=subject_filter[subject_filter["year"]==year_choice]
     final_filter=year_filter[year_filter["resourse_type"]==resource_type]
 
-    # database=database[database["from_id"]== new_data["chat"]["id"]]
-
     columns_to_keep = ["message_id","file_name","file_link","mime_type","file_size"]
     filtered = final_filter[columns_to_keep]
     print(year_filter)
 
-    # user=new_data["chat"]["id"]
-    # Extract 'city' column as a list
     messageidslst = list(filtered['message_id'].tolist())
     messageidslst.sort()
 
@@ -153,7 +111,3 @@ def share_files(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice,re
         print("------------------------------------------------------------------------")
         copymessages.copyMessages(baseurl,TOKEN,user,store,i)
         print("message sent of file", i)
-
-
-# mi=[1,4,3,2,6,8,5,3,9]
-# mi.sort()

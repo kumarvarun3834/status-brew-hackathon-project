@@ -90,39 +90,7 @@ def pdf_generator(baseurl, TOKEN, df, chat_id,pdfnum) -> None:
 
     c.save()
 
-    # # Check PDF file size and split if necessary
-    # pdf_size = os.path.getsize(pdf_output) / (1024 * 1024)
-    # if pdf_size > 30:
-    #     output_files = split_pdf(pdf_output, chat_id)
-    #     print(f"PDF split into {len(output_files)} files: {output_files}")
-    # else:
-    #     output_files = [pdf_output]
-    
-    # Send and clean up
     import share_file
     # for file_path in output_files:
     share_file.send_file(baseurl, TOKEN, chat_id, pdf_output)
     os.remove(pdf_output)
-
-    # if pdf_size > 30:
-    #     os.remove(pdf_output)
-
-    # print(f"Generated PDF files: {output_files}")
-
-# def split_pdf(input_pdf, chat_id, max_size_mb=30):
-#     output_files = []
-#     input_pdf = PdfFileReader(open(input_pdf, "rb"))
-#     total_pages = input_pdf.getNumPages()
-    
-#     # Adjust this estimate based on the actual file content and size
-#     pages_per_split = max_size_mb * 1024 * 1024 // (input_pdf.getPage(0).mediaBox.getWidth() * input_pdf.getPage(0).mediaBox.getHeight() / 72 / 72 * 3)  # Rough estimate
-
-#     for i in range(0, total_pages, pages_per_split):
-#         output_pdf = PdfFileWriter()
-#         for j in range(i, min(i + pages_per_split, total_pages)):
-#             output_pdf.addPage(input_pdf.getPage(j))
-#         output_file = f"{chat_id}({i // pages_per_split + 1}).pdf"
-#         with open(output_file, "wb") as out_file:
-#             output_pdf.write(out_file)
-#         output_files.append(output_file)
-#     return output_files
