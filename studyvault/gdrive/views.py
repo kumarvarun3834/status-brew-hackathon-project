@@ -2,33 +2,38 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Resource
 from .utils import read_menu_data  # Assuming you placed the function in a utils.py file
-import os
+# import os
+from .utils import read_menu_data
 # Create your views here.
 
 # Path to your CSV file (adjust this based on your project structure)
 # CSV_FILE_PATH = os.path.join(os.path.dirname(__file__), 'menu_data.csv')
+# menu_data = read_menu_data("studyvault\gdrive\main_menu_buttons")
+# os.path.join(os.path.dirname(__file__), "main_menu_buttons")
+import os
+menu_data = read_menu_data(os.path.join(os.path.dirname(__file__), "main_menu_buttons"))
 
 # step 0: getstarted page
 def home_view(request):
-    menu_data = read_menu_data()  # Read menu from CSV
+    
     semesters = list(menu_data.keys())  # Get all available semesters
     return render(request, 'home.html')
 
 # Step 1: Display all available semesters
 def semester_view(request):
-    menu_data = read_menu_data()  # Read menu from CSV
+    
     semesters = list(menu_data.keys())  # Get all available semesters
     return render(request, 'semester.html', {'semesters': semesters})
 
 # Step 2: Display subjects for the selected semester
 def subject_view(request, semester):
-    menu_data = read_menu_data()
+    
     subjects = list(menu_data.get("/" + semester, {}).keys())  # Get subjects for the selected semester
     return render(request, 'subject.html', {'semester': semester, 'subjects': subjects})
 
 # Step 3: Display years for the selected semester and subject
 def year_view(request, semester, subject):
-    menu_data = read_menu_data()
+    
     years = menu_data.get("/" + semester, {}).get("/" + subject, [])  # Get years for the selected semester and subject
     return render(request, 'year.html', {'semester': semester, 'subject': subject, 'years': years})
 
