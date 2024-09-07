@@ -98,6 +98,16 @@ def add_or_update_user(user_id, user_offset, command=None, semester_choice=None,
 
 def main_menu(baseurl,TOKEN,user,user_data,update,text=None,menu_data=read_menu_data("data_share_bot\main_menu_buttons")):
     print(text)
+
+    if text.count("/")>1:
+        lst= (text.strip().split("/"))
+        user_data[1]=lst[4]
+        user_data[2]=lst[0]
+        user_data[3]=lst[1]
+        user_data[4]=lst[2]
+        user_data[5]=lst[3]
+
+
     if text in ["/getfiles","/addfiles","/getfile","/listfiles"] or user_data[user][1] == "/getfiles" or user_data[user][1]=="/addfiles" or user_data[user][1] == "/getfile" or user_data[user][1] == "/listfiles": 
         # here the conditions are been checked either to add files or get files
         
@@ -136,6 +146,8 @@ def main_menu(baseurl,TOKEN,user,user_data,update,text=None,menu_data=read_menu_
                 user_data[user][2]=text
                 user_data[user][3]=None
                 user_data[user][4]=None
+                user_data[user][5]=None
+
 
             semester_choice=user_data[user][2]
     
@@ -147,6 +159,7 @@ def main_menu(baseurl,TOKEN,user,user_data,update,text=None,menu_data=read_menu_
                 if text in menu_data[semester_choice]:
                     user_data[user][3]=text
                     user_data[user][4]=None
+                    user_data[user][5]=None
 
                 subject_choice=user_data[user][3]
 
@@ -157,16 +170,24 @@ def main_menu(baseurl,TOKEN,user,user_data,update,text=None,menu_data=read_menu_
                 if user_data[user][4] in menu_data[semester_choice][subject_choice] or text in menu_data[semester_choice][subject_choice]:
                     if text in menu_data[semester_choice][subject_choice]:
                         user_data[user][4]=text
+                        user_data[user][5]=None
+
                     
                     year_choice=user_data[user][4]
 
-                    if user_data[user][5] in ["/Books, /PYQs, /Notes"] or text in ["/Books, /PYQs, /Notes"]:
-                        if text in ["/Books, /PYQs, /Notes"] or user_data[user][5] in ["/Books, /PYQs, /Notes"]:
+                    if user_data[user][5] == None and text not in ["/Books", "/PYQs", "/Notes"] :
+                        display_resourse_type(baseurl,TOKEN,user,update)
+                        print('resource choice sent-------------------------')
+                    
+                    if user_data[user][5] in ["/Books", "/PYQs", "/Notes"] or text in ["/Books", "/PYQs", "/Notes"]:
+                        print("till hare reachged")
+
+                        if text in ["/Books", "/PYQs", "/Notes"]:
                             user_data[user][5]=text
                     
-                        resource_choice=user_data[user][4]
+                        resource_choice=user_data[user][5]
     
-                        if user_data[user][5] in ["/Books, /PYQs, /Notes"] and user_data[user][1]=="/addfiles":
+                        if user_data[user][5] in ["/Books", "/PYQs", "/Notes"] and user_data[user][1]=="/addfiles":
                             import addfiles
 
                             if "document" in update:
@@ -176,11 +197,11 @@ def main_menu(baseurl,TOKEN,user,user_data,update,text=None,menu_data=read_menu_
                                 import send_message
                                 send_message.sendMessage(baseurl,TOKEN,user,"this bot can only save file type documents",update["message_id"])
 
-                        elif user_data[user][4] in menu_data[semester_choice][subject_choice] and user_data[user][1]=="/getfiles":
+                        elif user_data[user][5] in ["/Books", "/PYQs", "/Notes"] and user_data[user][1]=="/getfiles":
                             import addfiles
                             addfiles.share_files(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice,resource_choice)
 
-                        elif user_data[user][4] in menu_data[semester_choice][subject_choice] and user_data[user][1]=="/listfiles":
+                        elif user_data[user][5] in ["/Books", "/PYQs", "/Notes"] and user_data[user][1]=="/listfiles":
                             import addfiles
                             addfiles.share_file(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice,resource_choice)
                             import send_message
