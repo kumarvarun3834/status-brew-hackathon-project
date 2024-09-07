@@ -7,6 +7,9 @@ from . import views
 
 # this urlpatterns name is also fixed
 urlpatterns = [
+    # step 0: main start page
+    path('', views.semester_view, name='home'),
+
     # Step 1: Display all semesters at /home/
     path('home/', views.semester_view, name='semester_view'),
     

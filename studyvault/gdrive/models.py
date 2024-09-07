@@ -1,15 +1,14 @@
 from django.db import models
 
 # Create your models here.
-class ToDoList(models.Model):
-    name=models.CharField(max_length=500)
-    def __str__(self):
-        return self.name
-
-class Item(models.Model):
-    ToDoList=models.ForeignKey(ToDoList,on_delete=models.CASCADE)
-    text= models.CharField(max_length=300)
-    complete=models.BooleanField()
+class Resource(models.Model):
+    semester = models.CharField(max_length=50)  # e.g., "1st Semester"
+    subject = models.CharField(max_length=100)  # e.g., "Mathematics"
+    year = models.CharField(max_length=4)  # e.g., "2023"
+    resource_type = models.CharField(max_length=50)  # e.g., "notes", "books", "pyq"
+    file_link = models.URLField()  # URL to the file (Telegram link or elsewhere)
+    file_name = models.CharField(max_length=255)  # Name of the file
 
     def __str__(self):
-        return self.text
+        return f"{self.file_name} ({self.resource_type})"
+
