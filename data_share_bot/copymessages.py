@@ -1,21 +1,46 @@
 # this file will help in sending the files to bot
 import requests
-def copyMessages(baseurl,TOKEN , chat_id, from_chat_id, message_ids) -> None:
+def copyMessages(baseurl,TOKEN , chat_id, from_chat_id, message_ids):
     url=baseurl+TOKEN+"copyMessages"
-    parameters={
-        "chat_id":chat_id,
+    parameters = {
+        "chat_id": chat_id,
         "from_chat_id": from_chat_id,
-        "message_id":message_ids
-                }
+        "message_ids": message_ids
+        # "disable_notification": disable_notification,
+        # "protect_content": protect_content
+    }
     run=0
     try:
-        res=requests.get(url,data=parameters)
+        res = requests.post(url, json=parameters)
     except Exception as e:
-        print(f'error occured {e}')
-        if run<5:
+        print(f"error {e} occured")
+        while run<5:
             copyMessages(baseurl,TOKEN , chat_id, from_chat_id, message_ids)
             run+=1
-    import dataview
-    lst=dataview.data_view(res)
-    print(lst)
-    
+
+    if res.status_code == 200:
+        response_json = res.json()
+        print("Message sent")
+        print("Response:", response_json)
+        # Extract message details if available
+        if "result" in response_json:
+            result = response_json["result"]
+            print("Forwarded message details:", result)
+            # Response: {"ok":false,"error_code":404,"description":"Not Found"}
+            if response_json["ok"]!="false":
+                message_ids = [msg.get('message_id') for msg in result]
+                return message_ids[-1]
+                # return response_json
+
+        else:
+            print("No result in response")
+    else:
+        print("Message failed to send")
+        print("Status code:", res.status_code)
+        print("Response:", res.text)
+
+# from data import *
+# mess=copyMessages(baseurl,TOKEN,chat_id=1789016259,from_chat_id=1789016259,message_ids=[1,50,100])
+# # # message_ids=handle_forwarded_messages(response_json)
+# # # print(message_ids)
+# print(mess)

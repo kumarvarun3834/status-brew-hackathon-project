@@ -1,4 +1,4 @@
-# this file woll handle the menu and redirection to another directories
+# this file will handle the menu and redirection to another directories
 
 def read_menu_data(filename):
     """filename : file you wanted to get menu from and syntax is directory name and its sub sector in each line seperated by commas"""
@@ -14,7 +14,7 @@ def read_menu_data(filename):
             menu_data[semester][subject].append(year)
         # print(menu_data)
     return menu_data
-menu=read_menu_data("data_share_bot\main_menu_buttons")
+# menu=read_menu_data("data_share_bot\main_menu_buttons")
 # # print(menu["/semester1"]
 # print(list(menu.keys()))
 from data import *
@@ -165,4 +165,4 @@ def main_menu(baseurl,TOKEN,user,user_data,update,text=None,menu_data=read_menu_
                         send_message.sendMessage(baseurl,TOKEN,user,"send me the text id of that file you want",update["message_id"])
                         user_data[user][1]="/getfile"
                         send_message.sendMessage(baseurl,TOKEN,user,"setted your command to getfiles",update["message_id"])
-                        
+

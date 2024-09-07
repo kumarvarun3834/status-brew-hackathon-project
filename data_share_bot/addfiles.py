@@ -151,8 +151,8 @@ def share_files(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice,fi
     import copymessages
     for  i in chunks:
         print("------------------------------------------------------------------------")
-
         copymessages.copyMessages(baseurl,TOKEN,user,store,i)
+        print("message sent of file", i)
 
 
 # mi=[1,4,3,2,6,8,5,3,9]
