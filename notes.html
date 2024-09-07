@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Image</title>
+    <!-- Include the Londrina Sketch and Londrina Solid fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Sketch&family=Londrina+Solid&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Title styling */
+        .title {
+            font-family: 'Londrina Sketch', cursive;
+            font-size: 3vw; /* Adjust the font size responsively */
+            position: absolute;
+            top: 2%;
+            left: 2%;
+            color: black; /* Set the text color */
+            font-weight: 700;
+        }
+        .colon{
+            margin-top:165px;
+            margin-left:150px;
+            font-family:'londrina sketch',cursive;
+            font-size:50px;
+            font-weight: 900;
+        }
+        /* Heading styling */
+        .heading {
+            font-family: 'Londrina Solid', cursive;
+            font-size: 6vw; /* Adjust the font size responsively */
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: black; /* Set the text color */
+            text-align: center; /* Center align the text */
+        }
+
+        /* Background image styling */
+        img.bg {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Push the background behind other elements */
+        }
+
+        /* Folder image styling at the top-left corner */
+        .folder {
+            width: 3vw; /* Adjust width for folder image */
+            position: absolute;
+            top: 20%;
+            left: 5%;
+            transition: transform 0.5s ease;
+        }
+
+        .folder:hover {
+            transform: scale(1.1);
+        }
+
+        .filecon {
+            height:470px;
+            margin-left:90px;
+            margin-right:80px;        }
+    </style>
+</head>
+<body>
+
+    <!-- Title at the top-left corner -->
+    <div class="title">StudyVault.</div>
+
+    <!-- Heading at the top-center -->
+    <div class="heading">Choose Notes:</div>
+
+    <!-- Background image -->
+    <img class="bg" src="img/img.png" alt="">
+
+    <div class="colon">:</div>
+
+    <!-- Folder icon at the top-left corner -->
+    <img src="img/folder (2).png" class="folder" alt="Folder">
+
+    <div class="filecon"></div>
+
+</body>
+</html>
