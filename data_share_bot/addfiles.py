@@ -46,7 +46,7 @@ import os,csv
 
 
 
-def write_file(baseurl,TOKEN,semester_choice,subject_choice,year_choice,new_data, database="datasharebot/datafile/data.csv"):
+def write_file(baseurl,TOKEN,semester_choice,subject_choice,year_choice,new_data, database="data_share_bot\datafile\data.csv"):
     file_exists = os.path.isfile(database)
     # file_link=get_file_link.get_file_link(baseurl,TOKEN)
     import forward_messages
@@ -85,6 +85,75 @@ def write_file(baseurl,TOKEN,semester_choice,subject_choice,year_choice,new_data
     send_message.sendMessage(baseurl,TOKEN,new_data["chat"]["id"],"your given data had been recorded",new_data["message_id"])
 
 # write_file(df1)
+
+def share_file(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice,file='data_share_bot\datafile\data.csv'):
+    # share list of files
+    database=pd.read_csv(file)
+    
+    semester_filter=database[database["semester"]==semester_choice]
+    subject_filter=semester_filter[semester_filter["subject"]==subject_choice]
+    year_filter=subject_filter[subject_filter["year"]==year_choice]
+    # print(semester_choice,"---------------------------------------")
+    # print(semester_filter)
+    # print(subject_choice,"---------------------------------------")
+
+    # print(subject_filter)
+    # print(year_choice,"---------------------------------------")
+
+    # print(year_filter)
+# 
+    # print("Database shape:", database.shape)
+    # print("Chat ID from new_data:", new_data["chat"]["id"])
+
+    # database=database[database["from_id"]== new_data["chat"]["id"]]
+
+    columns_to_keep = ["message_id","file_name","file_link","mime_type","file_size"]
+    filtered = year_filter[columns_to_keep]
+    filtered.reset_index(drop=True, inplace=True)
+    # user=new_data["chat"]["id"]
+    
+    import files_handling
+    files_handling.pdf_creation(baseurl,TOKEN,filtered,user)
+
+def share_files(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice,file='data_share_bot\datafile\data.csv'):
+    database=pd.read_csv(file)
+    semester_filter=database[database["semester"]==semester_choice]
+    subject_filter=semester_filter[semester_filter["subject"]==subject_choice]
+    year_filter=subject_filter[subject_filter["year"]==year_choice]
+
+
+    print("Database shape:", database.shape)
+    print("Chat ID from new_data:", new_data["chat"]["id"])
+
+    # database=database[database["from_id"]== new_data["chat"]["id"]]
+
+    columns_to_keep = ["message_id","file_name","file_link","mime_type","file_size"]
+    filtered = year_filter[columns_to_keep]
+    print(year_filter)
+
+    # user=new_data["chat"]["id"]
+    # Extract 'city' column as a list
+    messageidslst = list(filtered['message_id'].tolist())
+    messageidslst.sort()
+
+    # Check the length
+    if len(messageidslst) > 90:
+        # Split into chunks of 90
+        chunks = [messageidslst[i:i + 90] for i in range(0, len(messageidslst), 90)]
+    else:
+        # If length <= 90, keep the list as is
+        chunks = [messageidslst]
+
+    # Now 'chunks' is a list of lists, each with a maximum length of 90
+    for i, chunk in enumerate(chunks, 1):
+        print(f"Chunk {i}: {chunk}")
+    print(chunks)
+    import copymessages
+    for  i in chunks:
+        print("------------------------------------------------------------------------")
+
+        copymessages.copyMessages(baseurl,TOKEN,user,store,i)
+
 
 # mi=[1,4,3,2,6,8,5,3,9]
 # mi.sort()

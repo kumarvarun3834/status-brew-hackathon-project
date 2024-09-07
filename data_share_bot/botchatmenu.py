@@ -16,11 +16,11 @@ def read_menu_data(filename):
             menu_data[semester][subject].append(year)
         # print(menu_data)
     return menu_data
-menu=read_menu_data("datasharebot\main_menu_buttons")
+menu=read_menu_data("data_share_bot\main_menu_buttons")
 # # print(menu["/semester1"]
 # print(list(menu.keys()))
 from data import *
-def display_semester(baseurl,TOKEN,user,update,menu_data=read_menu_data("datasharebot\main_menu_buttons")):
+def display_semester(baseurl,TOKEN,user,update,menu_data=read_menu_data("data_share_bot\main_menu_buttons")):
     """
     baseurl,TOKEN : requirement for working of bot
     temp_offset : from which update id we have to read data
@@ -39,7 +39,7 @@ def display_semester(baseurl,TOKEN,user,update,menu_data=read_menu_data("datasha
     print(menu_text)
 
 
-def display_subject(baseurl,TOKEN,user,semester_choice,update,menu_data=read_menu_data("datasharebot\main_menu_buttons")):
+def display_subject(baseurl,TOKEN,user,semester_choice,update,menu_data=read_menu_data("data_share_bot\main_menu_buttons")):
     """
     baseurl,TOKEN : requirement for working of bot
     temp_offset : from which update id we have to read data
@@ -58,7 +58,7 @@ def display_subject(baseurl,TOKEN,user,semester_choice,update,menu_data=read_men
     print(menu_text)
 
     
-def display_years(baseurl,TOKEN,user,semester_choice,subject_choice,update,menu_data=read_menu_data("datasharebot\main_menu_buttons")):
+def display_years(baseurl,TOKEN,user,semester_choice,subject_choice,update,menu_data=read_menu_data("data_share_bot\main_menu_buttons")):
     """
     baseurl,TOKEN : requirement for working of bot
     temp_offset : from which update id we have to read data
@@ -82,7 +82,7 @@ user_data = {}  # Dictionary to keep track of each user's offset
 def add_or_update_user(user_id, user_offset, command=None, semester_choice=None, subject_choice=None, year_choice=None):
     user_data[f'{user_id}'] = [user_offset, command, semester_choice, subject_choice, year_choice]
 
-def main_menu(baseurl,TOKEN,user,user_data,update,text=None,menu_data=read_menu_data("datasharebot\main_menu_buttons")):
+def main_menu(baseurl,TOKEN,user,user_data,update,text=None,menu_data=read_menu_data("data_share_bot\main_menu_buttons")):
     print(text)
     if text in ["/getfiles","/addfiles","/getfile","/listfiles"] or user_data[user][1] == "/getfiles" or user_data[user][1]=="/addfiles" or user_data[user][1] == "/getfile" or user_data[user][1] == "/listfiles": 
         # here the conditions are been checked either to add files or get files
