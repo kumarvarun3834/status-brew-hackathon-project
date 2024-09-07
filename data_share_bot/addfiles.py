@@ -4,26 +4,6 @@ import pandas as pd
 from data import  store,monitor
 import os,csv
 
-new_data={"message_id": 7,
-                "from": {
-                    "id": 1789016259,
-                    "is_bot": False,
-                    "first_name": "Beelzebub",
-                    "language_code": "en"
-                },
-                "chat": {
-                    "id": 1789016259,
-                    "first_name": "Beelzebub",
-                    "type": "private"
-                },
-                "date": 1718298113,
-                "document": {
-                    "file_name": "__init__.py",
-                    "mime_type": "text/x-python",
-                    "file_id": "BQACAgUAAxkBAAMHZmsmAS_x7iMkj4pcsJ7oKKKH8IAAAgoPAAI-ZlhXpdvvIXf93no1BA",
-                    "file_unique_id": "AgADCg8AAj5mWFc",
-                    "file_size": 3944}}
-
 def write_file(baseurl,TOKEN,semester_choice,subject_choice,year_choice,resource_type,new_data, database="data_share_bot\datafile\data.csv"):
     file_exists = os.path.isfile(database)
     # file_link=get_file_link.get_file_link(baseurl,TOKEN)

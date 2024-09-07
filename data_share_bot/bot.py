@@ -1,7 +1,7 @@
 # actual bot logic will be places here ie start of code
 
 import threading
-from typing import NoReturn
+# from typing import NoReturn
 from data import *
 from getupdates import *
 import botchatmenu 
