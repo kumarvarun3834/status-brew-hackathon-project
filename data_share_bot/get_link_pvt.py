@@ -5,7 +5,7 @@ def generateMessageLink(chat_id, message_id, is_private=True):
         # Remove the '-100' prefix from chat_id
         chat_id = str(chat_id).replace('-100', '')
     
-    link = f"https://t.me/c/{chat_id}/{message_id}"
+    link = f"https://t.me/{chat_id}/{message_id}"
     return link
 
 # # Example usage:
