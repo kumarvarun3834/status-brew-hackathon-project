@@ -75,10 +75,29 @@ def display_years(baseurl,TOKEN,user,semester_choice,subject_choice,update,menu_
     send_message.sendMessage(baseurl,TOKEN,user,menu_text,update["message_id"])
     print(menu_text)
 
+def display_resourse_type(baseurl,TOKEN,user,update):
+    """
+    baseurl,TOKEN : requirement for working of bot
+    temp_offset : from which update id we have to read data
+    user : its the userid from which we have to get results
+    semester_choice : the semester directory
+    subject_choice : the subjects inside the semesters directory
+    menu_data : data from where we are getting our directory
+    """
+    # this message will show user a menu of semesters that are currently stored in it
+    # Display the main menu (semesters)
+    menu_text = "Choose a year:\n"
+    for type in (["/Books, /PYQs, /Notes"]):
+        menu_text += f"{type}\n"
+
+    import send_message
+    send_message.sendMessage(baseurl,TOKEN,user,menu_text,update["message_id"])
+    print(menu_text)
+
 user_data = {}  # Dictionary to keep track of each user's offset
 
-def add_or_update_user(user_id, user_offset, command=None, semester_choice=None, subject_choice=None, year_choice=None):
-    user_data[f'{user_id}'] = [user_offset, command, semester_choice, subject_choice, year_choice]
+def add_or_update_user(user_id, user_offset, command=None, semester_choice=None, subject_choice=None, year_choice=None, resource_type=None):
+    user_data[f'{user_id}'] = [user_offset, command, semester_choice, subject_choice, year_choice, resource_type]
 
 def main_menu(baseurl,TOKEN,user,user_data,update,text=None,menu_data=read_menu_data("data_share_bot\main_menu_buttons")):
     print(text)
@@ -143,26 +162,32 @@ def main_menu(baseurl,TOKEN,user,user_data,update,text=None,menu_data=read_menu_
                         user_data[user][4]=text
                     
                     year_choice=user_data[user][4]
-                        
-                    if user_data[user][4] in menu_data[semester_choice][subject_choice] and user_data[user][1]=="/addfiles":
-                        import addfiles
 
-                        if "document" in update:
-                            new_data=update
-                            addfiles.write_file(baseurl,TOKEN,semester_choice,subject_choice,year_choice,new_data)
-                        else:
-                            import send_message
-                            send_message.sendMessage(baseurl,TOKEN,user,"this bot can only save file type documents",update["message_id"])
-
-                    elif user_data[user][4] in menu_data[semester_choice][subject_choice] and user_data[user][1]=="/getfiles":
-                        import addfiles
-                        addfiles.share_files(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice)
+                    if user_data[user][5] in ["/Books, /PYQs, /Notes"] or text in ["/Books, /PYQs, /Notes"]:
+                        if text in ["/Books, /PYQs, /Notes"] or user_data[user][5] in ["/Books, /PYQs, /Notes"]:
+                            user_data[user][5]=text
                     
-                    elif user_data[user][4] in menu_data[semester_choice][subject_choice] and user_data[user][1]=="/listfiles":
-                        import addfiles
-                        addfiles.share_file(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice)
-                        import send_message
-                        send_message.sendMessage(baseurl,TOKEN,user,"send me the text id of that file you want",update["message_id"])
-                        user_data[user][1]="/getfile"
-                        send_message.sendMessage(baseurl,TOKEN,user,"setted your command to getfiles",update["message_id"])
+                        resource_choice=user_data[user][4]
+    
+                        if user_data[user][5] in ["/Books, /PYQs, /Notes"] and user_data[user][1]=="/addfiles":
+                            import addfiles
+
+                            if "document" in update:
+                                new_data=update
+                                addfiles.write_file(baseurl,TOKEN,semester_choice,subject_choice,year_choice,resource_choice,new_data)
+                            else:
+                                import send_message
+                                send_message.sendMessage(baseurl,TOKEN,user,"this bot can only save file type documents",update["message_id"])
+
+                        elif user_data[user][4] in menu_data[semester_choice][subject_choice] and user_data[user][1]=="/getfiles":
+                            import addfiles
+                            addfiles.share_files(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice,resource_choice)
+
+                        elif user_data[user][4] in menu_data[semester_choice][subject_choice] and user_data[user][1]=="/listfiles":
+                            import addfiles
+                            addfiles.share_file(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice,resource_choice)
+                            import send_message
+                            send_message.sendMessage(baseurl,TOKEN,user,"send me the text id of that file you want",update["message_id"])
+                            user_data[user][1]="/getfile"
+                            send_message.sendMessage(baseurl,TOKEN,user,"setted your command to getfiles",update["message_id"])
 

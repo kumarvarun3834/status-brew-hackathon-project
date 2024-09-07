@@ -46,7 +46,7 @@ import os,csv
 
 
 
-def write_file(baseurl,TOKEN,semester_choice,subject_choice,year_choice,new_data, database="data_share_bot\datafile\data.csv"):
+def write_file(baseurl,TOKEN,semester_choice,subject_choice,year_choice,resource_type,new_data, database="data_share_bot\datafile\data.csv"):
     file_exists = os.path.isfile(database)
     # file_link=get_file_link.get_file_link(baseurl,TOKEN)
     import forward_messages
@@ -57,7 +57,9 @@ def write_file(baseurl,TOKEN,semester_choice,subject_choice,year_choice,new_data
         "semester":semester_choice,
         "subject":subject_choice,
         "year":year_choice,
+        "resource_type":resource_type,
         "file_link":"",
+        "backup_file_link":"",
         "from_id":new_data["from"]["id"],
         "chat_id":new_data["chat"]["id"],
         "date":new_data["date"],
@@ -86,13 +88,14 @@ def write_file(baseurl,TOKEN,semester_choice,subject_choice,year_choice,new_data
 
 # write_file(df1)
 
-def share_file(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice,file='data_share_bot\datafile\data.csv'):
+def share_file(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice,resource_type,file='data_share_bot\datafile\data.csv'):
     # share list of files
     database=pd.read_csv(file)
     
     semester_filter=database[database["semester"]==semester_choice]
     subject_filter=semester_filter[semester_filter["subject"]==subject_choice]
     year_filter=subject_filter[subject_filter["year"]==year_choice]
+    final_filter=year_filter[year_filter["resourse_type"]==resource_type]
     # print(semester_choice,"---------------------------------------")
     # print(semester_filter)
     # print(subject_choice,"---------------------------------------")
@@ -108,27 +111,24 @@ def share_file(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice,fil
     # database=database[database["from_id"]== new_data["chat"]["id"]]
 
     columns_to_keep = ["message_id","file_name","file_link","mime_type","file_size"]
-    filtered = year_filter[columns_to_keep]
+    filtered = final_filter[columns_to_keep]
     filtered.reset_index(drop=True, inplace=True)
     # user=new_data["chat"]["id"]
     
     import files_handling
     files_handling.pdf_creation(baseurl,TOKEN,filtered,user)
 
-def share_files(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice,file='data_share_bot\datafile\data.csv'):
+def share_files(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice,resource_type,file='data_share_bot\datafile\data.csv'):
     database=pd.read_csv(file)
     semester_filter=database[database["semester"]==semester_choice]
     subject_filter=semester_filter[semester_filter["subject"]==subject_choice]
     year_filter=subject_filter[subject_filter["year"]==year_choice]
-
-
-    print("Database shape:", database.shape)
-    print("Chat ID from new_data:", new_data["chat"]["id"])
+    final_filter=year_filter[year_filter["resourse_type"]==resource_type]
 
     # database=database[database["from_id"]== new_data["chat"]["id"]]
 
     columns_to_keep = ["message_id","file_name","file_link","mime_type","file_size"]
-    filtered = year_filter[columns_to_keep]
+    filtered = final_filter[columns_to_keep]
     print(year_filter)
 
     # user=new_data["chat"]["id"]
