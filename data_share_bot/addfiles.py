@@ -11,9 +11,10 @@ def write_file(baseurl,TOKEN,semester_choice,subject_choice,year_choice,resource
     import forward_messages
     message_id=forward_messages.forwardMessages(baseurl,TOKEN,store,new_data["chat"]["id"],new_data["message_id"])
     import copymessage_comm
-    message_idmid=copymessage_comm.copyMessages(baseurl,TOKEN , chat_id=mid, from_chat_id=store, message_ids=message_id)
+    # message_idmid=copymessage_comm.copyMessages(baseurl,TOKEN , chat_id=mid, from_chat_id=new_data["chat"]["id"], message_ids=new_data["message_id"])
+    message_idmid=copymessage_comm.copymessages(baseurl, TOKEN, chat_id=mid, from_chat_id=new_data["chat"]["id"], message_ids=new_data["message_id"])
 
-    message_idcloud=forward_messages.forwardMessages(baseurl,TOKEN,cloud,mid,message_idmid)
+    message_idcloud=forward_messages.forwardMessages(baseurl,TOKEN,cloud,mid,[message_idmid])
     
     import get_link_public
     privatelink=get_link_public.generateMessageLink(chat_id=store, message_id=message_id, username=None, is_private=True)

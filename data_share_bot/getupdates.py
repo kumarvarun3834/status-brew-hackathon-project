@@ -26,8 +26,8 @@ def get_updates(baseurl,TOKEN,offset=None, limit=15 )-> list:
         print("Error fetching updates")
         return []
     
-from data import *
-while True:
-    lst =get_updates(baseurl,TOKEN,offset=0,limit=None)
-    for i in lst:
-        print(i)
+# from data import *
+# while True:
+#     lst =get_updates(baseurl,TOKEN,offset=0,limit=None)
+#     for i in lst:
+#         print(i)

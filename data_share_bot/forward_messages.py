@@ -2,13 +2,14 @@
 from typing import Any
 import requests
 
-def forwardMessages(baseurl, TOKEN, chat_id, from_chat_id, message_ids) -> int:
-    if type(message_ids) == int:
-        message_ids = [message_ids]
-    elif "/" in message_ids:
-        message_ids = [message_ids[1:]]
+def forwardMessages(baseurl, TOKEN, chat_id, from_chat_id, message_ids, check=True) -> int:
+    if check==True:
+        if type(message_ids) == int:
+            message_ids = [message_ids]
+        elif "/" in message_ids:
+            message_ids = [message_ids[1:]]
     print(message_ids)
-    
+
     url=baseurl+TOKEN+"forwardMessages"
     parameters = {
         "chat_id": chat_id,

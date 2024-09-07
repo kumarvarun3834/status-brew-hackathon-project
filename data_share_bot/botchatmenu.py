@@ -204,11 +204,12 @@ def main_menu(baseurl,TOKEN,user,user_data,update,text=None,menu_data=read_menu_
                             send_message.sendMessage(baseurl,TOKEN,user,"setted your command to getfiles",update["message_id"])
     
     else:
-        # if text.count("/")>1 and text!=None:
-        lst= (text.strip().split("/"))
-        user_data[user][1]="/"+lst[4]
-        user_data[user][2]="/"+lst[0]
-        user_data[user][3]="/"+lst[1]
-        user_data[user][4]="/"+lst[2]
-        user_data[user][5]="/"+lst[3]
+        # if text!=None
+        if text.count("/")>1 and text!=None:
+            lst= (text.strip().split("/"))
+            user_data[user][1]="/"+lst[4]
+            user_data[user][2]="/"+lst[0]
+            user_data[user][3]="/"+lst[1]
+            user_data[user][4]="/"+lst[2]
+            user_data[user][5]="/"+lst[3]
 

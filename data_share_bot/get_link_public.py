@@ -14,13 +14,13 @@ def generateMessageLink(chat_id=None, message_id=None, username=None, is_private
     
     return link
 
-# Example usage for a private group:
-private_group_chat_id = -4566364009  # Example private group chat ID
-message_id = 2193
-private_group_message_link = generateMessageLink(chat_id=private_group_chat_id, message_id=message_id, is_private=True)
-print("Private Group Chat Message Link:", private_group_message_link)
+# # Example usage for a private group:
+# private_group_chat_id = -4566364009  # Example private group chat ID
+# message_id = 2193
+# private_group_message_link = generateMessageLink(chat_id=private_group_chat_id, message_id=message_id, is_private=True)
+# print("Private Group Chat Message Link:", private_group_message_link)
 
-# Example usage for a public group:
-public_group_username = "examplegroup"
-public_group_message_link = generateMessageLink(username=public_group_username, message_id=message_id, is_private=False)
-print("Public Group Chat Message Link:", public_group_message_link)
+# # Example usage for a public group:
+# public_group_username = "examplegroup"
+# public_group_message_link = generateMessageLink(username=public_group_username, message_id=message_id, is_private=False)
+# print("Public Group Chat Message Link:", public_group_message_link)
