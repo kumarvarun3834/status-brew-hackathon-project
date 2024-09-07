@@ -56,5 +56,5 @@ def file_view(request, semester, subject, year, resource_type):
     # all the messages are in form message id in back and file name is shown just make a for loop and a test data for it 
     # when user clicks the image it redirects and run a specific python code to get file and show a menu at /semester1/subjectname/year/PYQs/files/id given that id is always unique and id is int type it contais 2 buttons like if code run both will show but if code doesnt run it will show only one button and that one button is fixed that it will redirct to that specific id link of csv file 
 
-    resources = Resource.objects.filter(semester=semester, resource_type=resource_type, year=year)
+    resources = Resource.objects.filter(semester=semester, subject=subject, year=year, resource_type=resource_type)
     return render(request, 'files.html', {'resources': resources, 'semester': semester, 'subject': subject, 'year': year, 'resource_type': resource_type})

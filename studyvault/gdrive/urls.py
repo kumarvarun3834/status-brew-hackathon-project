@@ -26,6 +26,20 @@ urlpatterns = [
     path('home/<str:semester>/<str:subject>/<str:year>/<str:resource_type>/', views.file_view, name='file_view'),
 ]
 
+
+urlpatterns = [
+    # Main home/start page
+    path('', views.home_view, name='home'),
+
+    # Step-by-step URL structure
+    path('home/', views.semester_view, name='semester_view'),
+    path('home/<str:semester>/', views.subject_view, name='subject_view'),
+    path('home/<str:semester>/<str:subject>/', views.year_view, name='year_view'),
+    path('home/<str:semester>/<str:subject>/<str:year>/', views.resource_type_view, name='resource_type_view'),
+    path('home/<str:semester>/<str:subject>/<str:year>/<str:resource_type>/', views.file_view, name='file_view'),
+]
+
+
 # from django.urls import path
 # from . import views
 
