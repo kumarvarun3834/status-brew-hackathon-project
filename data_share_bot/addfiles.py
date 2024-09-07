@@ -71,7 +71,7 @@ def share_file(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice,res
     semester_filter=database[database["semester"]==semester_choice]
     subject_filter=semester_filter[semester_filter["subject"]==subject_choice]
     year_filter=subject_filter[subject_filter["year"]==year_choice]
-    final_filter=year_filter[year_filter["resourse_type"]==resource_type]
+    final_filter=year_filter[year_filter["resource_type"]==resource_type]
 
     columns_to_keep = ["message_id","file_name","file_link","mime_type","file_size"]
     filtered = final_filter[columns_to_keep]
@@ -85,7 +85,7 @@ def share_files(baseurl,TOKEN,user,semester_choice,subject_choice,year_choice,re
     semester_filter=database[database["semester"]==semester_choice]
     subject_filter=semester_filter[semester_filter["subject"]==subject_choice]
     year_filter=subject_filter[subject_filter["year"]==year_choice]
-    final_filter=year_filter[year_filter["resourse_type"]==resource_type]
+    final_filter=year_filter[year_filter["resource"]==resource_type]
 
     columns_to_keep = ["message_id","file_name","file_link","mime_type","file_size"]
     filtered = final_filter[columns_to_keep]

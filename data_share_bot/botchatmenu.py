@@ -99,13 +99,7 @@ def add_or_update_user(user_id, user_offset, command=None, semester_choice=None,
 def main_menu(baseurl,TOKEN,user,user_data,update,text=None,menu_data=read_menu_data("data_share_bot\main_menu_buttons")):
     print(text)
 
-    if text.count("/")>1:
-        lst= (text.strip().split("/"))
-        user_data[1]="/"+lst[4]
-        user_data[2]="/"+lst[0]
-        user_data[3]="/"+lst[1]
-        user_data[4]="/"+lst[2]
-        user_data[5]="/"+lst[3]
+    
 
 
     if text in ["/getfiles","/addfiles","/getfile","/listfiles"] or user_data[user][1] == "/getfiles" or user_data[user][1]=="/addfiles" or user_data[user][1] == "/getfile" or user_data[user][1] == "/listfiles": 
@@ -208,4 +202,13 @@ def main_menu(baseurl,TOKEN,user,user_data,update,text=None,menu_data=read_menu_
                             send_message.sendMessage(baseurl,TOKEN,user,"send me the text id of that file you want",update["message_id"])
                             user_data[user][1]="/getfile"
                             send_message.sendMessage(baseurl,TOKEN,user,"setted your command to getfiles",update["message_id"])
+    
+    else:
+        # if text.count("/")>1 and text!=None:
+        lst= (text.strip().split("/"))
+        user_data[user][1]="/"+lst[4]
+        user_data[user][2]="/"+lst[0]
+        user_data[user][3]="/"+lst[1]
+        user_data[user][4]="/"+lst[2]
+        user_data[user][5]="/"+lst[3]
 
