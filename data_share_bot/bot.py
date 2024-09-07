@@ -36,7 +36,7 @@ def handle_user_update(baseurl, TOKEN, update,user_data) -> None:
         botchatmenu.main_menu(baseurl, TOKEN ,f"{chat_id}",user_data,update["message"],text)
  
 # global offset
-global_offset=845428994
+global_offset=771734210
 threads = [] 
 
 

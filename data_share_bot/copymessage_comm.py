@@ -48,9 +48,9 @@ def copymessages(baseurl, TOKEN, chat_id, from_chat_id, message_ids) -> int:
         print("Response:", res.text)
 
 
-from data import *
-res=copymessages(baseurl, TOKEN, mid, "-4501586617", 5290 )
-print(res)
+# from data import *
+# res=copymessages(baseurl, TOKEN, mid, "-4501586617", 5290 )
+# print(res)
 
 # # # this file will help in sending the file to bot
 # # import requests
