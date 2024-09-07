@@ -1,1 +1,5 @@
 # here i will store the current logic of bot menu system
+
+git config --global --unset user.name
+git config --global --unset user.email
+git config --global --unset credential.helper
