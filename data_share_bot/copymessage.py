@@ -15,7 +15,7 @@ def copyMessages(baseurl,TOKEN , chat_id, from_chat_id, message_ids) -> None:
         if run<5:
             copyMessages(baseurl,TOKEN , chat_id, from_chat_id, message_ids)
             run+=1
-    import dataview
-    lst=dataview.data_view(res)
-    print(lst)
+    # import dataview
+    # lst=dataview.data_view(res)
+    # print(lst)
     

@@ -3,25 +3,31 @@
 import pandas as pd
 from data import  store,monitor
 import os,csv
-from data import cloud , public
+from data import cloud , public,mid
 
 def write_file(baseurl,TOKEN,semester_choice,subject_choice,year_choice,resource_type,new_data, database="data_share_bot\datafile\data.csv"):
     file_exists = os.path.isfile(database)
     # file_link=get_file_link.get_file_link(baseurl,TOKEN)
     import forward_messages
     message_id=forward_messages.forwardMessages(baseurl,TOKEN,store,new_data["chat"]["id"],new_data["message_id"])
+    import copymessage_comm
+    message_idmid=copymessage_comm.copyMessages(baseurl,TOKEN , chat_id=mid, from_chat_id=store, message_ids=message_id)
+
+    message_idcloud=forward_messages.forwardMessages(baseurl,TOKEN,cloud,mid,message_idmid)
+    
     import get_link_public
-    get_link_public.generateMessageLink(chat_id=store, message_id=message_id, username=None, is_private=True)
-    get_link_public.generateMessageLink(chat_id=cloud, message_id=message_id, username=public, is_private=False)
+    privatelink=get_link_public.generateMessageLink(chat_id=store, message_id=message_id, username=None, is_private=True)
+    public_link=get_link_public.generateMessageLink(chat_id=cloud, message_id=message_idcloud, username=public, is_private=False)
 
     df1={
         "message_id":message_id,
+        "cloud":message_idcloud,
         "semester":semester_choice,
         "subject":subject_choice,
         "year":year_choice,
         "resource_type":resource_type,
-        "file_link":"",
-        "backup_file_link":"",
+        "file_link":public_link,
+        "backup_file_link":privatelink,
         "from_id":new_data["from"]["id"],
         "chat_id":new_data["chat"]["id"],
         "date":new_data["date"],
