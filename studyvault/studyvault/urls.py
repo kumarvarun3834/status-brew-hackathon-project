@@ -14,10 +14,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# from django.contrib import admin
+# from django.urls import path
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+
+# ]
 from django.contrib import admin
 from django.urls import path,include
 
+# exist for linkage with apps
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include("bot.urls")),
+    path('', include("gdrive.urls")),
+    # path('start/', include("practice.urls")), # if defined at app urls.py no need for it 
+    # path(''/)
 ]
