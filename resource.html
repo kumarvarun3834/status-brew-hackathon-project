@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Image</title>
+    <!-- Include the Londrina Sketch and Londrina Solid fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Sketch&family=Londrina+Solid&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Title styling */
+        .title {
+            font-family: 'Londrina Sketch', cursive;
+            font-size: 3vw; /* Adjust the font size responsively */
+            position: absolute;
+            top: 2%;
+            left: 2%;
+            color: black; /* Set the text color */
+            font-weight: 700;
+        }
+
+        /* Heading styling */
+        .heading {
+            font-family: 'Londrina Solid', cursive;
+            font-size: 6vw; /* Adjust the font size responsively */
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: black; /* Set the text color */
+            text-align: center; /* Center align the text */
+        }
+
+        /* Background image styling */
+        img.bg {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Push the background behind other elements */
+        }
+
+        /* Container for folder images */
+        .file-container {
+            margin-top: 20vh; /* Adjust top margin to create space for heading */
+            display: flex;
+            flex-direction: column; /* Align rows vertically */
+            justify-content: center; /* Center rows vertically */
+            align-items: center; /* Center items horizontally */
+            height: 70vh; /* Reduced height to fit content within viewport */
+            position: relative;
+            z-index: 1; /* Ensure the folder images are above the background */
+            gap: 5vh; /* Space between the two rows */
+        }
+
+        /* Each row of folder images */
+        .file-row {
+            display: flex;
+            justify-content: center; /* Center images in each row */
+            gap: 10vw; /* Space between folder images in a row */
+        }
+
+        /* Folder images styling */
+        img.folder {
+            height: auto;
+            width: 10vw; /* Adjust width for folder images */
+        }
+
+        .folder:hover {
+            transition: 0.5s ease;
+            transform: scale(1.1);
+        }
+
+        /* Styling for the links below each folder */
+        .folder-label {
+            font-family: 'Londrina Sketch';
+            font-size: 3vw; /* Adjust the font size responsively */
+            color: black; /* Set the text color */
+            text-decoration: none; /* Remove underline from links */
+            display: block; /* Ensure each link is on its own line */
+            font-weight: 700;
+            text-align: center; /* Center the text */
+        }
+
+        .folder-label:hover {
+            transform: scale(1.2);
+            transition: 0.5s ease;
+            text-decoration: underline; /* Add underline on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Title at the top-left corner -->
+    <div class="title">StudyVault.</div>
+
+    <!-- Heading at the top-center -->
+    <div class="heading">Choose Resource:</div>
+
+    <!-- Background image -->
+    <img class="bg" src="img/img.png" alt="">
+
+    <!-- Folder images displayed in a single row -->
+    <div class="file-container">
+        <div class="file-row">
+            <div>
+                <img src="img/folder (2).png" class="folder" alt="Folder">
+                <a href="#books" class="folder-label">Books</a>
+            </div>
+            <div>
+                <img src="img/folder (2).png" class="folder" alt="Folder">
+                <a href="#notes" class="folder-label">Notes</a>
+            </div>
+            <div>
+                <img src="img/folder (2).png" class="folder" alt="Folder">
+                <a href="#pyqs" class="folder-label">PYQ's</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
