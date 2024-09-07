@@ -1,0 +1,158 @@
+{
+    "ok": true,
+    "result": [
+        {
+            "update_id": 845428882,
+            "message": {
+                "message_id": 3,
+                "from": {
+                    "id": 1789016259,
+                    "is_bot": false,
+                    "first_name": "Beelzebub",
+                    "language_code": "en"
+                },
+                "chat": {
+                    "id": 1789016259,
+                    "first_name": "Beelzebub",
+                    "type": "private"
+                },
+                "date": 1718295100,
+                "text": "/start",
+                "entities": [
+                    {
+                        "offset": 0,
+                        "length": 6,
+                        "type": "bot_command"
+                    }
+                ]
+            }
+        },
+        {
+            "update_id": 845428883,
+            "message": {
+                "message_id": 4,
+                "from": {
+                    "id": 1789016259,
+                    "is_bot": false,
+                    "first_name": "Beelzebub",
+                    "language_code": "en"
+                },
+                "chat": {
+                    "id": 1789016259,
+                    "first_name": "Beelzebub",
+                    "type": "private"
+                },
+                "date": 1718298043,
+                "text": "/start",
+                "entities": [
+                    {
+                        "offset": 0,
+                        "length": 6,
+                        "type": "bot_command"
+                    }
+                ]
+            }
+        },
+        {
+            "update_id": 845428884,
+            "message": {
+                "message_id": 5,
+                "from": {
+                    "id": 1789016259,
+                    "is_bot": false,
+                    "first_name": "Beelzebub",
+                    "language_code": "en"
+                },
+                "chat": {
+                    "id": 1789016259,
+                    "first_name": "Beelzebub",
+                    "type": "private"
+                },
+                "date": 1718298055,
+                "text": "/start",
+                "entities": [
+                    {
+                        "offset": 0,
+                        "length": 6,
+                        "type": "bot_command"
+                    }
+                ]
+            }
+        },
+        {
+            "update_id": 845428885,
+            "message": {
+                "message_id": 6,
+                "from": {
+                    "id": 1789016259,
+                    "is_bot": false,
+                    "first_name": "Beelzebub",
+                    "language_code": "en"
+                },
+                "chat": {
+                    "id": 1789016259,
+                    "first_name": "Beelzebub",
+                    "type": "private"
+                },
+                "date": 1718298086,
+                "photo": [
+                    {
+                        "file_id": "AgACAgUAAxkBAAMGZmsl5gn4HWvW3Ciq0qczAXzEt8gAAvnBMRs-ZlhXg-FgaFICZlQBAAMCAANzAAM1BA",
+                        "file_unique_id": "AQAD-cExGz5mWFd4",
+                        "file_size": 1045,
+                        "width": 90,
+                        "height": 50
+                    },
+                    {
+                        "file_id": "AgACAgUAAxkBAAMGZmsl5gn4HWvW3Ciq0qczAXzEt8gAAvnBMRs-ZlhXg-FgaFICZlQBAAMCAANtAAM1BA",
+                        "file_unique_id": "AQAD-cExGz5mWFdy",
+                        "file_size": 10563,
+                        "width": 320,
+                        "height": 177
+                    },
+                    {
+                        "file_id": "AgACAgUAAxkBAAMGZmsl5gn4HWvW3Ciq0qczAXzEt8gAAvnBMRs-ZlhXg-FgaFICZlQBAAMCAAN4AAM1BA",
+                        "file_unique_id": "AQAD-cExGz5mWFd9",
+                        "file_size": 39729,
+                        "width": 800,
+                        "height": 442
+                    },
+                    {
+                        "file_id": "AgACAgUAAxkBAAMGZmsl5gn4HWvW3Ciq0qczAXzEt8gAAvnBMRs-ZlhXg-FgaFICZlQBAAMCAAN5AAM1BA",
+                        "file_unique_id": "AQAD-cExGz5mWFd-",
+                        "file_size": 47094,
+                        "width": 1069,
+                        "height": 591
+                    }
+                ]
+            }
+        },
+        {
+            "update_id": 845428886,
+            "message": {
+                "message_id": 7,
+                "from": {
+                    "id": 1789016259,
+                    "is_bot": false,
+                    "first_name": "Beelzebub",
+                    "language_code": "en"
+                },
+                "chat": {
+                    "id": 1789016259,
+                    "first_name": "Beelzebub",
+                    "type": "private"
+                },
+                "date": 1718298113,
+                "document": {
+                    "file_name": "__init__.py",
+                    "mime_type": "text/x-python",
+                    "file_id": "BQACAgUAAxkBAAMHZmsmAS_x7iMkj4pcsJ7oKKKH8IAAAgoPAAI-ZlhXpdvvIXf93no1BA",
+                    "file_unique_id": "AgADCg8AAj5mWFc",
+                    "file_size": 3944
+                }
+            }
+        }
+    ]
+}
+
+{"ok":false,"error_code":400,"description":"Bad Request: group chat was upgraded to a supergroup chat","parameters":{"migrate_to_chat_id":-1002186023307}}
