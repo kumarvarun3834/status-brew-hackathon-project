@@ -2,14 +2,14 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Resource
 from .utils import read_menu_data  # Assuming you placed the function in a utils.py file
-# import os
+import os
 from .utils import read_menu_data
 # Create your views here.
 
 # Path to your CSV file (adjust this based on your project structure)
-# CSV_FILE_PATH = os.path.join(os.path.dirname(__file__), 'menu_data.csv')
-# menu_data = read_menu_data("studyvault\gdrive\main_menu_buttons")
-# os.path.join(os.path.dirname(__file__), "main_menu_buttons")
+CSV_FILE_PATH = os.path.join(os.path.dirname(__file__), 'menu_data.csv')
+menu_data = read_menu_data("studyvault\gdrive\main_menu_buttons")
+os.path.join(os.path.dirname(__file__), "main_menu_buttons")
 import os
 menu_data = read_menu_data(os.path.join(os.path.dirname(__file__), "main_menu_buttons"))
 
@@ -58,3 +58,48 @@ def file_view(request, semester, subject, year, resource_type):
 
     resources = Resource.objects.filter(semester=semester, subject=subject, year=year, resource_type=resource_type)
     return render(request, 'files.html', {'resources': resources, 'semester': semester, 'subject': subject, 'year': year, 'resource_type': resource_type})
+
+# from django.shortcuts import render
+# from .models import Resource
+
+# def directory_structure(request):
+#     # Prepare a dictionary with the hierarchical structure
+#     structure = {}
+
+#     resources = Resource.objects.all()
+#     for resource in resources:
+#         semester = resource.semester
+#         subject = resource.subject
+#         year = resource.year
+#         resource_type = resource.resource_type
+
+#         if semester not in structure:
+#             structure[semester] = {}
+#         if subject not in structure[semester]:
+#             structure[semester][subject] = {}
+#         if year not in structure[semester][subject]:
+#             structure[semester][subject][year] = {}
+#         if resource_type not in structure[semester][subject][year]:
+#             structure[semester][subject][year][resource_type] = []
+
+#         structure[semester][subject][year][resource_type].append({
+#             'name': resource.file.name,
+#             'url': resource.file.url
+#         })
+
+#     return render(request, 'directory.html', {'structure': structure})
+
+# def file_view(request, semester, subject, year, resource_type):
+#     resources = Resource.objects.filter(
+#         semester=semester,
+#         subject=subject,
+#         year=year,
+#         resource_type=resource_type
+#     )
+    
+#     file_data = [{
+#         'name': resource.file.name,
+#         'url': resource.file.url
+#     } for resource in resources]
+    
+#     return render(request, 'files.html', {'files': file_data, 'semester': semester, 'subject': subject, 'year': year, 'resource_type': resource_type})
