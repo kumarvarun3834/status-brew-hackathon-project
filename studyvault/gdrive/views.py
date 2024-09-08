@@ -17,7 +17,7 @@ menu_data = read_menu_data(os.path.join(os.path.dirname(__file__), "main_menu_bu
 def home_view(request):
     # this will generate the getstarted page
     # / dir
-    return render(request, 'test.html')
+    return render(request, 'index.html')
 
 # Step 1: Display all available semesters
 def semester_view(request):
