@@ -21,7 +21,7 @@ def read_menu_data(filename):
     return menu_data
 
 # Load menu data from the file
-menu_data = read_menu_data('sbv2\main_menu_buttons')
+menu_data = read_menu_data('data_share_bot\main_menu_buttons')
 
 # Routes for each HTML page
 @app.route('/')
