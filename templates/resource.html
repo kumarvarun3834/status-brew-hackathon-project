@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ resource_type|title }}</title>
+    <title>Choose Resource</title>
     <!-- Include the Londrina Sketch and Londrina Solid fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Londrina+Sketch&family=Londrina+Solid&display=swap" rel="stylesheet">
     <style>
@@ -80,7 +80,8 @@
         /* Styling for the links below each folder */
         .folder-label {
             font-family: 'Londrina Sketch';
-            font-size: 3vw; /* Adjust the font size responsively */
+            width: 10vw;
+            font-size: 50px; /* Adjust the font size responsively */
             color: black; /* Set the text color */
             text-decoration: none; /* Remove underline from links */
             display: block; /* Ensure each link is on its own line */
@@ -97,23 +98,24 @@
 </head>
 <body>
 
-    <!-- Title and Heading -->
+    <!-- Title at the top-left corner -->
     <div class="title">StudyVault.</div>
-    <div class="heading">Choose {{ resource_type|title }}:</div>
 
-    <!-- Background Image -->
+    <!-- Heading at the top-center -->
+    <div class="heading">Choose Resource:</div>
+
+    <!-- Background image -->
     <img class="bg" src="{{ url_for('static', filename='img/img.png') }}" alt="Background Image">
 
-    <!-- Container for displaying folders dynamically based on resource type -->
+    <!-- Folder images displayed dynamically -->
     <div class="file-container">
         <div class="file-row">
-            <!-- Dynamically loop through resources and display folders -->
             {% for resource in resources %}
             <div>
-                <a href="{{ resource.file_link }}" target="_blank">
+                <a href="https://t.me/testcasewhile1bot">
                     <img src="{{ url_for('static', filename='img/folder (2).png') }}" class="folder" alt="Folder">
                 </a>
-                <a href="{{ resource.file_link }}" class="folder-label" target="_blank">{{ resource.file_name }}</a>
+                <a href="https://t.me/testcasewhile1bot" class="folder-label">{{ resource[1:] }}</a>
             </div>
             {% endfor %}
         </div>
