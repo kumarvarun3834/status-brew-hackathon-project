@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ semester }} {{ subject }} {{ year }}</title>
+</head>
+<body>
+    <h1>{{ semester }} - {{ subject }} - {{ year }}</h1>
+
+    <h2>Subfolders</h2>
+    <ul>
+        {% for subfolder in subfolders %}
+            <li><a href="{% url 'year_view' semester=semester subject=subject year=subfolder %}">{{ subfolder }}</a></li>
+        {% empty %}
+            <li>No subfolders</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Files</h2>
+    <ul>
+        {% for file in files %}
+            <li>{{ file.name }}</li>
+        {% empty %}
+            <li>No files</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File List</title>
+</head>
+<body>
+    <h1>Files and Folders</h1>
+    <a href="{% url 'file_upload' %}">Upload File</a>
+    <a href="{% url 'folder_create' %}">Create Folder</a>
+    
+    <h2>Folders</h2>
+    <ul>
+        {% for folder in subfolders %}
+            <li><a href="{% url 'folder_view' folder_id=folder.id %}">{{ folder.name }}</a></li>
+        {% endfor %}
+    </ul>
+    
+    <h2>Files</h2>
+    <ul>
+        {% for file in files %}
+            <li>{{ file.name }} - <a href="{{ file.file.url }}" download>Download</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
