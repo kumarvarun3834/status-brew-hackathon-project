@@ -23,6 +23,8 @@ Including another URLconf
 # ]
 from django.contrib import admin
 from django.urls import path,include
+from django.conf import settings
+from django.conf.urls.static import static
 
 # exist for linkage with apps
 urlpatterns = [
@@ -31,3 +33,6 @@ urlpatterns = [
     # path('start/', include("practice.urls")), # if defined at app urls.py no need for it 
     # path(''/)
 ]
+
+# if settings.DEBUG:
+#     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

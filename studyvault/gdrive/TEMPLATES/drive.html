@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hierarchical Folder Structure</title>
+    <style>
+        .folder-container {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+        .folder {
+            cursor: pointer;
+            margin: 5px 0;
+        }
+        .folder img {
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        .folder span {
+            font-weight: bold;
+        }
+        .folder ul {
+            margin-left: 20px;
+            padding-left: 20px;
+            border-left: 1px solid #ccc;
+            display: none; /* Folders initially collapsed */
+        }
+    </style>
+</head>
+<body>
+    <h1>Hierarchical Folder Structure</h1>
+    <input type="file" id="textFile" accept=".txt">
+    <button onclick="loadTextFile()">Load Folder Structure</button>
+    <div id="folderContainer">
+        <!-- Folder structure will be displayed here -->
+    </div>
+
+    <script>
+        function loadTextFile() {
+            const input = document.getElementById('textFile');
+            const file = input.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const textData = e.target.result;
+                    const lines = textData.split("\n");
+                    const folderTree = {};
+
+                    // Build the folder tree structure
+                    lines.forEach(line => {
+                        const folders = line.trim().split(",");
+                        let currentLevel = folderTree;
+
+                        folders.forEach(folder => {
+                            if (folder) {
+                                if (!currentLevel[folder]) {
+                                    currentLevel[folder] = {};
+                                }
+                                currentLevel = currentLevel[folder];
+                            }
+                        });
+                    });
+
+                    // Clear previous content
+                    const folderContainer = document.getElementById('folderContainer');
+                    folderContainer.innerHTML = "";
+
+                    // Recursively create folder structure
+                    function createFolderStructure(parent, structure) {
+                        const ul = document.createElement('ul');
+                        ul.className = "folder-container";
+
+                        for (const key in structure) {
+                            const li = document.createElement('li');
+                            li.className = "folder";
+
+                            const icon = document.createElement("img");
+                            icon.src = "https://img.icons8.com/fluency/48/000000/folder-invoices.png"; // Folder icon
+
+                            const span = document.createElement("span");
+                            span.textContent = key;
+
+                            li.appendChild(icon);
+                            li.appendChild(span);
+
+                            if (Object.keys(structure[key]).length > 0) {
+                                li.appendChild(createFolderStructure(li, structure[key]));
+
+                                li.onclick = function (event) {
+                                    const subFolders = li.querySelector("ul");
+                                    if (subFolders) {
+                                        subFolders.style.display = subFolders.style.display === "none" ? "block" : "none";
+                                    }
+                                    event.stopPropagation();
+                                };
+                            }
+
+                            ul.appendChild(li);
+                        }
+                        return ul;
+                    }
+
+                    folderContainer.appendChild(createFolderStructure(null, folderTree));
+                };
+                reader.readAsText(file);
+            } else {
+                alert("Please upload a text file.");
+            }
+        }
+    </script>
+</body>
+</html>
