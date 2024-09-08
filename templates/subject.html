@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subjects for Semester 1</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Sketch&family=Londrina+Solid&display=swap" rel="stylesheet">
+    
+    <!-- Embedded CSS -->
+    <style>
+        /* General reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Title styling */
+        .title {
+            font-family: 'Londrina Sketch', cursive;
+            font-size: 50px; /* Keep the original size */
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            color: black; /* Set text color */
+            font-weight: 700;
+        }
+
+        /* Heading styling */
+        .heading {
+            font-family: 'Londrina Solid', cursive;
+            font-size: 100px; /* Original size */
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: black; /* Set text color */
+            text-align: center;
+        }
+
+        /* Background image styling */
+        img.bg {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Ensure it's behind everything */
+        }
+
+        /* Container for folder images */
+        .subject-container {
+            margin-top: 150px; /* Adjust for heading */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Folder label styling (file name) */
+        .folder-label {
+            font-family: 'Londrina Sketch', cursive;
+            font-size: 45px; /* Adjusted font size */
+            color: black; /* Set text color */
+            text-decoration: none; /* Remove underline */
+            display: block; /* Ensure each link is on its own line */
+            font-weight: 700;
+            text-align: center; /* Center the label text */
+            padding: 10px;
+        }
+
+        /* Hover effect for folder labels */
+        .folder-label:hover {
+            transform: scale(1.2);
+            transition: 0.5s ease;
+            text-decoration: underline;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Heading -->
+    <div class="heading">Choose Subjects</div>
+
+    <!-- Dynamically display the subjects -->
+    <div class="subject-container">
+        <ul>
+            {% for subject in subjects %}
+            <li>
+                <a href="{{ url_for('year', semester=semester, subject=subject) }}" class="folder-label">{{ subject }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
