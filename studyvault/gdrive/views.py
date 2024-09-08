@@ -8,9 +8,9 @@ from .utils import read_menu_data
 
 # Path to your CSV file (adjust this based on your project structure)
 CSV_FILE_PATH = os.path.join(os.path.dirname(__file__), 'menu_data.csv')
-menu_data = read_menu_data("studyvault\gdrive\main_menu_buttons")
-os.path.join(os.path.dirname(__file__), "main_menu_buttons")
-import os
+# menu_data = read_menu_data("studyvault\gdrive\main_menu_buttons")
+# os.path.join(os.path.dirname(__file__), "main_menu_buttons")
+# import os
 menu_data = read_menu_data(os.path.join(os.path.dirname(__file__), "main_menu_buttons"))
 
 # step 0: getstarted page

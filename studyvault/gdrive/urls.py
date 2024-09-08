@@ -38,8 +38,8 @@ urlpatterns = [
     path('<str:semester>/<str:subject>/', views.year_view, name='year_view'),
     path('<str:semester>/<str:subject>/<str:year>/', views.resource_type_view, name='resource_type_view'),
     path('<str:semester>/<str:subject>/<str:year>/<str:resource_type>/', views.file_view, name='file_view'),
-]
-
+    # path('<Te')
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # from django.urls import path
 # from . import views
