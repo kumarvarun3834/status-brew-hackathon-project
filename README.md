@@ -22,9 +22,12 @@ This project aims to create a Telegram bot and a companion website to help unive
 ## **Installation & Setup**
 ### Prerequisites
 - Python 3.x
-- Django
-- Telegram Bot API Token
-- Other Python libraries as specified in `requirements.txt`
+- flask
+- for front-end html , css 
+- Telegram Bot API
+- Requests
+- Threating 
+- Other Python libraries like csv , pandas , os ,repolib etc
 
 ### Steps
 1. **Clone the Repository**:  
@@ -38,41 +41,42 @@ This project aims to create a Telegram bot and a companion website to help unive
    pip install -r requirements.txt
    ```
 
-3. **Setup Django**:  
-   Configure the Django settings, run migrations, and create a superuser.
+3. **Setup Flask**:  
    ```bash
-   python manage.py migrate
-   python manage.py createsuperuser
+   pip install flask
    ```
 
 4. **Run the Development Server**:  
    ```bash
-   python manage.py runserver
+   click on run button
    ```
 
 5. **Telegram Bot Setup**:  
-   Add your Telegram Bot API Token to the environment variables or directly into the bot configuration.
+   Add your Telegram Bot API Token to the environment variables and directly appointinto the data.py file 
 
 6. **Access the Application**:  
    Visit `http://127.0.0.1:8000/` to access the website.
 
 ## **Usage**
 - **Telegram Bot**: Start the bot and follow the on-screen instructions to upload, download, and manage files.
-- **Website**: Use the Google Drive-like interface to search, filter, and manage your study materials.
+- **Website**: Use the Google Drive-like interface to search, filter, and download your study materials.
 
 ## **Team Members**
 - Varun Kumar
 - Tushar Dhingra
 - Anshika Gupta
-- Simran Juneja
 
 ## **Future Scope**
+- Can be added a direct link to download files from bot.
 - Expand the platform to include more courses and departments.
 - Introduce features like user profiles, community engagement tools, and notifications.
 
+## **Contributing Guidelines**
+- help in management of notes  and data as it is most needed application for the students for their studies
+- please mentain decorum of the communuity and don't push any voilating files to the website just main base is for sharing notes and helping others to excel in their studies.
+
 ## **Known Issues & Limitations**
 - Potential risks include legal concerns over sharing copyrighted materials and Telegram's availability in certain regions.
+- potential news of legal cases on telegram and seems to be banned soon
 
-## **Contact**
-For any questions or issues, please contact [your email/contact info].
 
